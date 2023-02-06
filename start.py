@@ -3,7 +3,7 @@ from spotipy.oauth2 import SpotifyClientCredentials #To access authorised Spotif
 
 client_id = "cb68bb0f66804f22be4e0ca5c6ca66b5"
 client_secret = "d2f2bd91a62747338b6ef320fc719ce9"
-
+#variable
 suchbegriff = "Museum"
 limit = 10
 
