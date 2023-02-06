@@ -13,8 +13,14 @@ limit = 10
 client_credentials_manager = SpotifyClientCredentials(client_id=client_id, client_secret=client_secret)
 sp = spotipy.Spotify(client_credentials_manager=client_credentials_manager)
 
+# TODO Katja: Funktion, die den Nutzer nach Start des Programms fragt, welcher Suchbegriff gecrawlt werden soll und danach wieviele Treffer angezeigt werden sollen. Beides gerne als Unterfunktionen nach folgendem Muster:
+# def user_ask():
+
 # Funktionsaufruf für Suche
 result = sp.search(suchbegriff)
+
+# TODO Holger: JSON-String formatieren und als Datei abspeichern.
+
 result['tracks']['items'][0]['artists']
 
 # Testbereich
