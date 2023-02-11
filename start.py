@@ -16,14 +16,18 @@ sp = spotipy.Spotify(client_credentials_manager=client_credentials_manager)
 
 # TODO Katja: Funktion, die den Nutzer nach Start des Programms fragt,
 # welcher Suchbegriff gecrawlt werden soll und danach wieviele Treffer
-# angezeigt werden sollen. Beides gerne als Unterfunktionen nach folgendem Muster:
+# angezeigt werden sollen. Beides gerne als Unterfunktionen nach
+# folgendem Muster:
+
 # def user_ask():
 
 # Funktionsaufruf für Suche
 result = sp.search(suchbegriff)
 
 # Funktion zur Speicherung eines Strings oder Dicts in einer Datei
-
+# TODO Holger: Funktion so ergänzen, dass die zu schreibenden JSON-
+# Datei formatiert und ergänzt um Zeilenumbrüche wird. Evtl. das
+# json package nutzen?
 
 def write_to_file(filename, data):
     with open(filename, 'w') as file:
