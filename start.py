@@ -14,20 +14,32 @@ dateiname = "Ergebnisse.json"
 client_credentials_manager = SpotifyClientCredentials(client_id=client_id, client_secret=client_secret)
 sp = spotipy.Spotify(client_credentials_manager=client_credentials_manager)
 
-# TODO Katja: Funktion, die den Nutzer nach Start des Programms fragt, welcher Suchbegriff gecrawlt werden soll und danach wieviele Treffer angezeigt werden sollen. Beides gerne als Unterfunktionen nach folgendem Muster:
+# TODO Katja: Funktion, die den Nutzer nach Start des Programms fragt,
+# welcher Suchbegriff gecrawlt werden soll und danach wieviele Treffer
+# angezeigt werden sollen. Beides gerne als Unterfunktionen nach folgendem Muster:
 # def user_ask():
 
 # Funktionsaufruf für Suche
 result = sp.search(suchbegriff)
 
-# BUG Holger: Fehlerbehebeung -> Funktion speichert bisher nur Strings und keine Dictionaries.
-def write_to_file(filename, text):
+# Funktion zur Speicherung eines Strings oder Dicts in einer Datei
+
+
+def write_to_file(filename, data):
     with open(filename, 'w') as file:
-        file.write(text)
+        if isinstance(data, dict):
+            for key, value in data.items():
+                file.write(f"{key}: {value}\n")
+        elif isinstance(data, str):
+            file.write(data)
+        else:
+            raise ValueError(
+                "data muss entweder ein Dictionary oder ein String sein.")
     print("Datei wurde erfolgreich gespeichert.")
+
 
 result['tracks']['items'][0]['artists']
 
-# Testbereich
+# Testbereich für Funktionen
 print(result)
 write_to_file(dateiname, result)
