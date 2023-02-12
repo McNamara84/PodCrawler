@@ -22,12 +22,34 @@ sp = spotipy.Spotify(client_credentials_manager=client_credentials_manager)
 # eingeben muss)
 #oder aufbau def unterdef eingabe suchbegriff rückgabe unterdef eingabe anzahl return (wie gesagt würde 
 #ich nicht eingeben wollen)
+
+## Wir sind da relativ frei. Wenn du es so nicht haben wollen würdest, wie dann? Wenn du es besser findest,
+## können wir auch Suchbegriff und Limit als (optionale) Parameter entgegen nehmen
+## (so dass Nutz:innen "start.py suchbegriff limit eingeben müssen beim Programmstart).
+
 #die variable mit dem suchbegriff muss wohin? oder nur returnen und dann?
+
+## Die Variable existiert bereits und ist per default mit "Museum" belegt. Die Funktion sollte diese
+## Variable einfach nur überschreiben und stattdessen den neuen Suchbegriff speichern.
+
 #wie sucht der den String dann in der spotify bibliothek = was ist zu beachten?
+
+## Die Suche passiert aktuell in der Zeile 58: result = sp.search(suchbegriff), da ist erstmal nichts
+## weiter zu beachten.
+
 #können wir die anzahl standardisieren bzw extra eingeben lassen einmal und nicht jedesmal?
+
+## Ja, klar! Würde als separate Funktion auch sehr gut funktionieren!
+
 # was meint result =sp.search suchbegriff? ist das der befehl der in der 
 #spotifiy bib suchen lässt? dann muss ich auf jeden fall die variable suchbegriff nennen oder?
+
+## Ja, die Varibale suchbegriff muss den Suchbegriff enthalten. Die Funktion kommt aus der Spotipy Bib.
+
 #was muss in die klammer bei user_ask?
+
+## Nichts, denn die Funktion erfragt ja nur etwas und braucht dazu keinen Parameter. ;-)
+
 def user_ask():
     suchbegriff=input("Was suchst du?")
     return(suche)
