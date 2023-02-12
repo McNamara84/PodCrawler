@@ -8,42 +8,36 @@ client_secret = "d2f2bd91a62747338b6ef320fc719ce9"
 # Variablen, die der Nutzer festlegen soll
 suchbegriff = "Museum"
 limit = 10
-dateiname = "Ergebnisse.json"
 
 # Spotify API Objekt erstellen
 client_credentials_manager = SpotifyClientCredentials(client_id=client_id, client_secret=client_secret)
 sp = spotipy.Spotify(client_credentials_manager=client_credentials_manager)
 
-# TODO Katja: Funktion, die den Nutzer nach Start des Programms fragt,
-# welcher Suchbegriff gecrawlt werden soll und danach wieviele Treffer
-# angezeigt werden sollen. Beides gerne als Unterfunktionen nach
-# folgendem Muster:
-
-# def user_ask():
+# TODO Katja: Funktion, die den Nutzer nach Start des Programms fragt, welcher Suchbegriff 
+# gecrawlt werden soll und danach wieviele Treffer angezeigt werden sollen. Beides gerne als 
+# Unterfunktionen nach folgendem Muster: def user_ask():
 
 # Funktionsaufruf für Suche
+#Aufbau wie? def bla bla eingabe suchbegriff + eingabe anzahl (das wäre aber nervig wenn man das immer 
+# eingeben muss)
+#oder aufbau def unterdef eingabe suchbegriff rückgabe unterdef eingabe anzahl return (wie gesagt würde 
+#ich nicht eingeben wollen)
+#die variable mit dem suchbegriff muss wohin? oder nur returnen und dann?
+#wie sucht der den String dann in der spotify bibliothek = was ist zu beachten?
+#können wir die anzahl standardisieren bzw extra eingeben lassen einmal und nicht jedesmal?
+# was meint result =sp.search suchbegriff? ist das der befehl der in der 
+#spotifiy bib suchen lässt? dann muss ich auf jeden fall die variable suchbegriff nennen oder?
+#was muss in die klammer bei user_ask?
+def user_ask():
+    suchbegriff=input("Was suchst du?")
+    return(suche)
+    anzahl=input("Wieviel Treffer willst du haben?")
+    return(anzahl)
 result = sp.search(suchbegriff)
 
-# Funktion zur Speicherung eines Strings oder Dicts in einer Datei
-# TODO Holger: Funktion so ergänzen, dass die zu schreibenden JSON-
-# Datei formatiert und ergänzt um Zeilenumbrüche wird. Evtl. das
-# json package nutzen?
-
-def write_to_file(filename, data):
-    with open(filename, 'w') as file:
-        if isinstance(data, dict):
-            for key, value in data.items():
-                file.write(f"{key}: {value}\n")
-        elif isinstance(data, str):
-            file.write(data)
-        else:
-            raise ValueError(
-                "data muss entweder ein Dictionary oder ein String sein.")
-    print("Datei wurde erfolgreich gespeichert.")
-
+# TODO Holger: JSON-String formatieren und als Datei abspeichern.
 
 result['tracks']['items'][0]['artists']
 
-# Testbereich für Funktionen
+# Testbereich
 print(result)
-write_to_file(dateiname, result)
