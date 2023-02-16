@@ -4,9 +4,11 @@ from spotipy.oauth2 import SpotifyClientCredentials
 # Verifikation für die Spotify API
 client_id = "cb68bb0f66804f22be4e0ca5c6ca66b5"
 client_secret = "d2f2bd91a62747338b6ef320fc719ce9"
+client_credentials_manager = SpotifyClientCredentials(client_id=client_id, client_secret=client_secret)
+
 
 #Suchbegriff für den Webcrawler
-sterm = ""
+sterm = "geschichte"
 resultcount = 20
 resultcountmax = 100
 
@@ -30,11 +32,16 @@ def get_result_count():
     resultcount = input("Wieviel Ergebnisse möchtest du erhalten?")
     if (check_integer_input(resultcount)):
         int(resultcount)
-        print(resultcount)
         return resultcount
     else:
         return resultcountmax
 
+def search_with_string(suchbegriff, anzahl):
+    sp=spotipy.Spotify(client_credentials_manager=client_credentials_manager)
+    results=sp.search(q=suchbegriff, limit=anzahl, type="podcasts")
+    podcasts=results["shows"]["items"]
+    print(podcasts)
+
 #get_search_string()
-resultcount = get_result_count()
-print(resultcount)
+#resultcount = get_result_count()
+search_with_string(sterm, resultcount)
