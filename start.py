@@ -9,8 +9,8 @@ client_credentials_manager = SpotifyClientCredentials(client_id=client_id, clien
 
 #Suchbegriff für den Webcrawler
 sterm = "geschichte"
-resultcount = 20
-resultcountmax = 100
+resultcount = 50
+resultcountmax = 50
 
 def get_search_string():
     sterm = input("Gebe den Suchbegriff ein:\n")
@@ -38,9 +38,12 @@ def get_result_count():
 
 def search_with_string(suchbegriff, anzahl):
     sp=spotipy.Spotify(client_credentials_manager=client_credentials_manager)
-    results=sp.search(q=suchbegriff, limit=anzahl, type="podcasts")
-    podcasts=results["shows"]["items"]
-    print(podcasts)
+    results=sp.search(q=suchbegriff, limit=anzahl, type="show")
+    if results and results["shows"] and results["shows"]["items"]:
+        podcasts=results["shows"]["items"]
+        print(podcasts)
+    else:
+        print("Nix GARNIX")
 
 #get_search_string()
 #resultcount = get_result_count()
