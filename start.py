@@ -19,19 +19,22 @@ def get_search_string():
         print("Das ist zu viel! Maximal 50 Zeichen bitte.")
         get_search_string()
 
+def check_integer_input(input_str):
+    try:
+        int(input_str)
+        return True
+    except ValueError:
+        return False
 
 def get_result_count():
-    resultcount= input("Wieviel Ergebnisse möchtest du erhalten?")
-    try: int(resultcount)
-    except ValueError:
-        if (resultcount==""):
-            resultcount=resultcountmax
-        else: 
-            print("DU dumme Nuss! EINE ZAAAHL!")
-            get_result_count()
-    if (resultcount>=100):
-        print("Das ist doch zu viel! Max. {}.".format(resultcountmax))
-        get_result_count()
+    resultcount = input("Wieviel Ergebnisse möchtest du erhalten?")
+    if (check_integer_input(resultcount)):
+        int(resultcount)
+        print(resultcount)
+        return resultcount
+    else:
+        return resultcountmax
 
 #get_search_string()
-get_result_count()
+resultcount = get_result_count()
+print(resultcount)
