@@ -5,7 +5,7 @@ import json
 #client_id = "cb68bb0f66804f22be4e0ca5c6ca66b5"
 #client_secret = "1d8cc3a1e3104a359046751297c36b28"
 #client_credentials_manager = SpotifyClientCredentials(client_id=client_id, client_secret=client_secret)
-token = "BQBjDfxRtF7930btT-F6cb05a6QjVTdNflDv4FWA4jOPdbsvSKhHy-NSNxqkJjQULNtoayMQ5IOysHmAn2y4MsDsnGC-89W1YOTwIZ3EKz3KDFXuLLDd"
+token = "BQA_s7hykAMiA7vIKmN1SXfzX5PpxDK3rXXSl-6LnjhHbWk_bPZKy-JWWwvDCR4JiTwy-pXnvNv42lZwaoIBGvJQyegMI2KH5ErHimmripjgVi4T1OzV"
 
 
 #Suchbegriff für den Webcrawler
@@ -49,10 +49,14 @@ def search_with_string(query, token):
     data = json.loads(response.text)
     return data
 
+def get_result():
+    result = search_with_string(sterm, token)
+    return result
+
 #get_search_string()
 #resultcount = get_result_count()
 #print(search_with_string(sterm, resultcount))
 
-# Suchbegriff = wissenschaft podcast 
+# Suchbegriff = wissenschaft podcast
 sterm = sterm + " podcast"
-print(json.dumps(search_with_string(sterm, token), indent=4))
+print(get_result())
