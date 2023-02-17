@@ -11,7 +11,7 @@ token = "BQBjDfxRtF7930btT-F6cb05a6QjVTdNflDv4FWA4jOPdbsvSKhHy-NSNxqkJjQULNtoayM
 
 
 #Suchbegriff für den Webcrawler
-sterm = "wissenschaft podcast"
+sterm = "wissenschaft"
 resultcount = 50
 resultcountmax = 50
 
@@ -62,5 +62,7 @@ def search_spotify(query, token):
 #get_search_string()
 #resultcount = get_result_count()
 #print(search_with_string(sterm, resultcount))
-sterm = sterm + "podcast"
+
+# Suchbegriff = wissenschaft podcast 
+sterm = sterm + " podcast"
 print(json.dumps(search_spotify(sterm, token), indent=4))
