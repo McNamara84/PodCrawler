@@ -1,15 +1,14 @@
-import requests
-import json
+import spotipy
+from spotipy.oauth2 import SpotifyClientCredentials
 
 # Verifikation für die Spotify API
 #client_id = "cb68bb0f66804f22be4e0ca5c6ca66b5"
 #client_secret = "1d8cc3a1e3104a359046751297c36b28"
 #client_credentials_manager = SpotifyClientCredentials(client_id=client_id, client_secret=client_secret)
-token = "BQBjDfxRtF7930btT-F6cb05a6QjVTdNflDv4FWA4jOPdbsvSKhHy-NSNxqkJjQULNtoayMQ5IOysHmAn2y4MsDsnGC-89W1YOTwIZ3EKz3KDFXuLLDd"
 
 
 #Suchbegriff für den Webcrawler
-sterm = "wissenschaft"
+sterm = "geschichte"
 resultcount = 50
 resultcountmax = 50
 
@@ -37,22 +36,19 @@ def get_result_count():
     else:
         return resultcountmax
 
-def search_with_string(query, token):
-    headers = {
-        'Authorization': f'Bearer {token}',
-    }
-    params = (
-        ('q', query),
-        ('type', 'track,album,artist,show'),
-    )
-    response = requests.get('https://api.spotify.com/v1/search', headers=headers, params=params)
-    data = json.loads(response.text)
-    return data
+def search_with_string(suchbegriff, anzahl):
+    client_id = "cb68bb0f66804f22be4e0ca5c6ca66b5"
+    client_secret = "1d8cc3a1e3104a359046751297c36b28"
+    client_credentials_manager = SpotifyClientCredentials(client_id, client_secret)
+    sp = spotipy.Spotify(client_credentials_manager=client_credentials_manager)
+    result = sp.search(suchbegriff, limit=anzahl, offset=0, type='track', market=None)
+    return result
+
+def get_results():
+    result=search_with_string(sterm, resultcount)
+    return result
 
 #get_search_string()
 #resultcount = get_result_count()
 #print(search_with_string(sterm, resultcount))
-
-# Suchbegriff = wissenschaft podcast 
-sterm = sterm + " podcast"
-print(json.dumps(search_with_string(sterm, token), indent=4))
+result=get_results()
