@@ -37,14 +37,15 @@ def get_result_count():
         return resultcountmax
 
 def search_with_string(suchbegriff, anzahl):
-    sp=spotipy.Spotify(client_credentials_manager=client_credentials_manager)
-    results=sp.search(q=suchbegriff, limit=anzahl, type="show")
+    sp = spotipy.Spotify(client_credentials_manager=client_credentials_manager)
+    results = sp.search(q=suchbegriff, limit=anzahl, type="show")
     if results and results["shows"] and results["shows"]["items"]:
-        podcasts=results["shows"]["items"]
-        print(podcasts)
+        podcasts = results["shows"]["items"]
+        return podcasts
     else:
-        print("Nix GARNIX")
+        print("Keine Ergebnisse gefunden")
+        return []
 
 #get_search_string()
 #resultcount = get_result_count()
-search_with_string(sterm, resultcount)
+print(search_with_string(sterm, resultcount))
