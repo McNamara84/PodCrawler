@@ -12,6 +12,7 @@ token = "BQA_s7hykAMiA7vIKmN1SXfzX5PpxDK3rXXSl-6LnjhHbWk_bPZKy-JWWwvDCR4JiTwy-pX
 sterm = "wissenschaft"
 resultcount = 50
 resultcountmax = 50
+filename = "ergebnisse.json"
 
 def get_search_string():
     sterm = input("Gebe den Suchbegriff ein:\n")
@@ -58,7 +59,8 @@ def clean_dict(input):
     return output
 
 def create_file(data, filename):
-    
+    with open(filename, 'w') as f:
+        f.write(data)
 
 
 #get_search_string()
@@ -68,4 +70,5 @@ def create_file(data, filename):
 # Suchbegriff = wissenschaft podcast
 sterm = sterm + " podcast"
 ergebnis=get_result()
-print(clean_dict(ergebnis))
+bereinigtes_ergebnis = clean_dict(ergebnis)
+create_file(bereinigtes_ergebnis, filename)
