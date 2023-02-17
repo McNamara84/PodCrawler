@@ -53,10 +53,19 @@ def get_result():
     result = search_with_string(sterm, token)
     return result
 
+def clean_dict(input):
+    output=json.dumps(input, indent=4)
+    return output
+
+def create_file(data, filename):
+    
+
+
 #get_search_string()
 #resultcount = get_result_count()
 #print(search_with_string(sterm, resultcount))
 
 # Suchbegriff = wissenschaft podcast
 sterm = sterm + " podcast"
-print(get_result())
+ergebnis=get_result()
+print(clean_dict(ergebnis))
