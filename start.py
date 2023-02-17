@@ -2,9 +2,9 @@ import spotipy
 from spotipy.oauth2 import SpotifyClientCredentials
 
 # Verifikation für die Spotify API
-client_id = "cb68bb0f66804f22be4e0ca5c6ca66b5"
-client_secret = "1d8cc3a1e3104a359046751297c36b28"
-client_credentials_manager = SpotifyClientCredentials(client_id=client_id, client_secret=client_secret)
+#client_id = "cb68bb0f66804f22be4e0ca5c6ca66b5"
+#client_secret = "1d8cc3a1e3104a359046751297c36b28"
+#client_credentials_manager = SpotifyClientCredentials(client_id=client_id, client_secret=client_secret)
 
 
 #Suchbegriff für den Webcrawler
@@ -37,14 +37,12 @@ def get_result_count():
         return resultcountmax
 
 def search_with_string(suchbegriff, anzahl):
+    client_id = "cb68bb0f66804f22be4e0ca5c6ca66b5"
+    client_secret = "1d8cc3a1e3104a359046751297c36b28"
+    client_credentials_manager = SpotifyClientCredentials(client_id, client_secret)
     sp = spotipy.Spotify(client_credentials_manager=client_credentials_manager)
-    results = sp.search(q=suchbegriff, limit=anzahl, type="show")
-    if results and results["shows"] and results["shows"]["items"]:
-        podcasts = results["shows"]["items"]
-        return podcasts
-    else:
-        print("Keine Ergebnisse gefunden")
-        return []
+    result = sp.search(suchbegriff, limit=anzahl, offset=0, type='track', market=None)
+    return result
 
 #get_search_string()
 #resultcount = get_result_count()
