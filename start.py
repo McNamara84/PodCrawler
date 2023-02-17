@@ -61,6 +61,7 @@ def clean_dict(input):
 def create_file(data, filename):
     with open(filename, 'w') as f:
         f.write(data)
+    f.close()
 
 
 #get_search_string()
